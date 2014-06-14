@@ -5,7 +5,12 @@
 FROM debian:latest
 MAINTAINER Shohei Yasutake <amutake.s@gmail.com>
 
-ADD install.sh /
-RUN chmod +x /install.sh
-RUN /install.sh
-RUN rm /install.sh
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y make git ocaml camlp5
+RUN git clone git://github.com/hemmi/coq2scala.git /opt/coq2scala
+WORKDIR /opt/coq2scala/coq-8.4pl2
+RUN ./configure -prefix /usr/local
+RUN make world
+RUN make install
+WORKDIR /
