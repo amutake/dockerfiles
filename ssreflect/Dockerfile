@@ -14,6 +14,7 @@ RUN apt install -y ocaml ocaml-native-compilers camlp4-extra opam
 RUN opam init -y
 RUN eval `opam config env`
 RUN echo 'eval `opam config env`' >> /etc/profile
+RUN apt install -y git build-essential
 RUN opam repo add coq-released https://coq.inria.fr/opam/released
-RUN opam install -y -j coq.${COQ_VER}
-RUN opam install -y -j coq:ssreflect.${SSR_VER}
+RUN opam install -y -j4 coq.${COQ_VER}
+RUN opam install -y -j4 coq:ssreflect.${SSR_VER}
